@@ -1,0 +1,6924 @@
+﻿{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 68,
+  "iteration": 1664113398492,
+  "links": [
+    {
+      "icon": "question",
+      "tags": [],
+      "targetBlank": true,
+      "title": "How to",
+      "tooltip": "Docs about how to use this dashboard",
+      "type": "link",
+      "url": "https://matchmove.atlassian.net/wiki/home"
+    },
+    {
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Open In New Relic",
+      "tooltip": "Open in New Relic",
+      "type": "link",
+      "url": "https://one.newrelic.com/launcher/nr1-core.explorer?platform[accountId]=1390445&platform[timeRange][duration]=604800000&platform[$isFallbackTimeRange]=false&pane=eyJuZXJkbGV0SWQiOiJhcG0tbmVyZGxldHMub3ZlcnZpZXciLCJlbnRpdHlHdWlkIjoiTVRNNU1EUTBOWHhCVUUxOFFWQlFURWxEUVZSSlQwNThOemswTlRBME5ETSIsImlzT3ZlcnZpZXciOnRydWUsInJlZmVycmVycyI6eyJsYXVuY2hlcklkIjoibnIxLWNvcmUuZXhwbG9yZXIiLCJuZXJkbGV0SWQiOiJucjEtY29yZS5saXN0aW5nIn19&sidebars[0]=eyJuZXJkbGV0SWQiOiJucjEtY29yZS5hY3Rpb25zIiwic2VsZWN0ZWROZXJkbGV0Ijp7Im5lcmRsZXRJZCI6ImFwbS1uZXJkbGV0cy5vdmVydmlldyIsImlzT3ZlcnZpZXciOnRydWV9LCJlbnRpdHlHdWlkIjoiTVRNNU1EUTBOWHhCVUUxOFFWQlFURWxEUVZSSlQwNThOemswTlRBME5ETSJ9"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "description": "200 status code",
+          "fieldConfig": {
+            "defaults": {
+              "color": {},
+              "custom": {},
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 9,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "hiddenSeries": false,
+          "id": 9,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Success",
+              "color": "#73BF69"
+            },
+            {
+              "alias": "4xx",
+              "color": "#FADE2A"
+            },
+            {
+              "alias": "5xx",
+              "color": "#F2495C"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Success",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"200\" && !\"health\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:(\"400\",\"401\",\"402\",\"403\",\"404\")",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:(\"500\",\"501\",\"502\",\"503\",\"504\")",
+              "refId": "C",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "OP API Success Stats",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "description": "Average Response Time",
+          "fieldConfig": {
+            "defaults": {
+              "color": {},
+              "custom": {},
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 9,
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 18,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0",
+                    "trimEdges": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "90",
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "Average",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0",
+                    "trimEdges": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "type": "avg"
+                }
+              ],
+              "query": "filebeat_fields_app:op",
+              "refId": "B",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "OP API Response Time Percentile",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "description": "4xx status code",
+          "fieldConfig": {
+            "defaults": {
+              "color": {},
+              "custom": {},
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 9,
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 0,
+            "y": 24
+          },
+          "hiddenSeries": false,
+          "id": 17,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "404",
+              "nullPointMode": "null as zero"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "400",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "5m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"400\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "401",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "5m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"401\"",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "402",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "5m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"402\"",
+              "refId": "C",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "403",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "5m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"403\"",
+              "refId": "D",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "403",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "5m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"404\"",
+              "refId": "E",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "OP API 4xx Stats",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "description": "5xx status code",
+          "fieldConfig": {
+            "defaults": {
+              "color": {},
+              "custom": {},
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 9,
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 12,
+            "y": 24
+          },
+          "hiddenSeries": false,
+          "id": 10,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": false
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "500",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "1m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && log_status:(\"500\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "501",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "1m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && log_status:(\"501\")",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "502",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "1m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && log_status:(\"502\")",
+              "refId": "C",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "503",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "1m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && log_status:(\"503\")",
+              "refId": "D",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "504",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "1m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && log_status:(\"504\")",
+              "refId": "E",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "OP API Failure Stats",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_status"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 533
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 16,
+            "w": 12,
+            "x": 0,
+            "y": 35
+          },
+          "id": 51,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && \"POST\" && log_status:(\"500\",\"501\",\"502\",\"503\",\"504\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP POST APIs Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_status"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 533
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 16,
+            "w": 12,
+            "x": 12,
+            "y": 35
+          },
+          "id": 72,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\" && \"PUT\" && log_status:(\"500\",\"501\",\"502\",\"503\",\"504\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP PUT APIs Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 8,
+            "x": 0,
+            "y": 51
+          },
+          "id": 50,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "log_status"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP API Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 683
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 16,
+            "x": 8,
+            "y": 51
+          },
+          "id": 62,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op && !\"overseas\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP Slowest 10 APIs",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 9,
+            "x": 0,
+            "y": 63
+          },
+          "id": 77,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "log_status"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"200\" && !\"health\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP API Successful API",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 8,
+            "x": 9,
+            "y": 63
+          },
+          "id": 78,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:\"400\" && !\"health\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP API 4xx API",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 7,
+            "x": 17,
+            "y": 63
+          },
+          "id": 79,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_status",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op && log_status:(\"500\",\"503\",\"504\",\"505\") && !\"health\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "OP API 5xx Routes",
+          "type": "table"
+        }
+      ],
+      "title": "Overall API Trend",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 24,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 2
+          },
+          "hiddenSeries": false,
+          "id": 26,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "User Create",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "User Update",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "B",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "User Create and Update Throughput",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 9,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 28,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "2h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "90",
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "User Create and Update Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 0,
+            "y": 23
+          },
+          "hiddenSeries": false,
+          "id": 70,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "2xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"400\"",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"500\"",
+              "refId": "C",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "User Creation Responses",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 12,
+            "y": 23
+          },
+          "hiddenSeries": false,
+          "id": 71,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "2xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"400\"",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"500\"",
+              "refId": "C",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "User Update Responses",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 6,
+            "x": 0,
+            "y": 33
+          },
+          "id": 22,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Create Users Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 7,
+            "x": 6,
+            "y": 33
+          },
+          "id": 58,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:(\"500\",\"501\",\"502\",\"503\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "User Creation API Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 543
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 11,
+            "x": 13,
+            "y": 33
+          },
+          "id": 67,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && !\"wallets\" && !\"exceptions\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Slowest 10 APIs",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 6,
+            "x": 0,
+            "y": 42
+          },
+          "id": 27,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Update Users Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 7,
+            "x": 6,
+            "y": 42
+          },
+          "id": 59,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:(\"500\",\"501\",\"502\",\"503\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "User Update API Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 560
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 11,
+            "x": 13,
+            "y": 42
+          },
+          "id": 68,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && !\"cards\" && !\"wallets\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"funds\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Slowest 10 APIs",
+          "type": "table"
+        }
+      ],
+      "title": "Users Metrics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 49,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 3
+          },
+          "hiddenSeries": false,
+          "id": 29,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": true,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "5xx",
+              "color": "#F2495C"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Success",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"virtual_accounts\" && !\"bank_accounts\" && !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "C",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"virtual_accounts\" && !\"bank_accounts\" && !\"fund_transfers\" && log_status:(\"400\",\"401\",\"402\",\"403\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"virtual_accounts\" && !\"bank_accounts\" && !\"fund_transfers\" && log_status:(\"500\",\"502\",\"503\")",
+              "refId": "B",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Wallet Creation Throughput",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 9,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 13
+          },
+          "hiddenSeries": false,
+          "id": 46,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "1"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "90",
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"virtual_accounts\" && !\"bank_accounts\" && !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Wallet Creation Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 0,
+            "y": 23
+          },
+          "id": 47,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && !\"fund_transfers\" && !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Create Wallet API Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_status"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 89
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 367
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 8,
+            "y": 23
+          },
+          "id": 52,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"virtual_accounts\" && !\"bank_accounts\" && !\"fund_transfers\" && log_status:(\"500\",\"501\",\"502\",\"503\",\"504\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Wallet Creation API Failure",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 322
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 16,
+            "y": 23
+          },
+          "id": 63,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"virtual_accounts\" && !\"bank_accounts\" && !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Slowest 10 APIs",
+          "type": "table"
+        }
+      ],
+      "title": "Wallet Metrics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 31,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 4
+          },
+          "hiddenSeries": false,
+          "id": 36,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "90",
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Card Creation Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 15
+          },
+          "hiddenSeries": false,
+          "id": 45,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "5xx",
+              "color": "#F2495C"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Success",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m",
+                    "min_doc_count": "0"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status: (\"400\", \"401\", \"402\", \"403\")",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status: (\"500\", \"501\", \"502\", \"503\")",
+              "refId": "C",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Card Creation Throughput",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 25
+          },
+          "hiddenSeries": false,
+          "id": 73,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Card Creation Max Time Taken",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 8,
+            "x": 0,
+            "y": 36
+          },
+          "id": 37,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "log_status"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "1",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Create Cards Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_status"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 95
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 253
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 8,
+            "x": 8,
+            "y": 36
+          },
+          "id": 53,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status:(\"500\", \"501\", \"502\", \"503\", \"504\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Card Creation API Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 359
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 8,
+            "x": 16,
+            "y": 36
+          },
+          "id": 65,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status:(\"200\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Slowest 10 APIs",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 0,
+            "y": 46
+          },
+          "id": 34,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Update Cards Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 8,
+            "y": 46
+          },
+          "id": 54,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\" && log_status:(\"500\",\"501\",\"502\",\"503\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Card Update API Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 361
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 16,
+            "y": 46
+          },
+          "id": 66,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"PUT\" && \"users\" && \"cards\" && \"wallets\" &&  !\"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && !\"pins\" && !\"virtual_accounts\" && !\"transactions\" && !\"fund_transfers\" && !\"bank_accounts\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Slowest 10 APIs",
+          "type": "table"
+        }
+      ],
+      "title": "Cards Metrics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 44,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 5
+          },
+          "hiddenSeries": false,
+          "id": 32,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "10m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "90",
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Topup Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 16
+          },
+          "hiddenSeries": false,
+          "id": 40,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "5xx",
+              "color": "#F2495C"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Success",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "10m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "10m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:(\"400\",\"401\",\"402\",\"403\")",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "10m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" &&  \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:(\"500\",\"501\",\"502\",\"503\")",
+              "refId": "C",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Topup Throughput",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 27
+          },
+          "hiddenSeries": false,
+          "id": 74,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && !\"sgmcrpo\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Topup Max Duration (Non Prepaid)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 11,
+            "w": 24,
+            "x": 0,
+            "y": 38
+          },
+          "hiddenSeries": false,
+          "id": 81,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && !\"sgmcrpo\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Topup Percentiles (Non Prepaid)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 49
+          },
+          "hiddenSeries": false,
+          "id": 75,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && \"sgmcrpo\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Topup Max Duration (Prepaid)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 61
+          },
+          "hiddenSeries": false,
+          "id": 82,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && \"sgmcrpo\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Topup Percentile (Prepaid)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 5,
+            "x": 0,
+            "y": 73
+          },
+          "id": 42,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Topup Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 7,
+            "x": 5,
+            "y": 73
+          },
+          "id": 60,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\" && log_status:(\"500\",\"501\",\"502\",\"503\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Topup API Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 532
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 73
+          },
+          "id": 69,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"POST\" && \"users\" && !\"cards\" && \"wallets\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Slowest 10 APIs",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 82
+          },
+          "id": 80,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"DELETE\" && \"users\" && !\"cards\" && \"wallets\" && \"funds\" && !\"authentications\" && !\"addresses\" && !\"overseas\" &&  !\"fund_transfers\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Deduct Statuses",
+          "type": "table"
+        }
+      ],
+      "title": "Topup Metrics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 39,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 41,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {
+                    "percents": [
+                      "90",
+                      "95",
+                      "99"
+                    ]
+                  },
+                  "type": "percentiles"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" && !\"funds\" && !\"sgmcrpo\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Transactions GET API Percentile",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 10,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 18
+          },
+          "hiddenSeries": false,
+          "id": 35,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "5xx",
+              "color": "#F2495C"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Success",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" && !\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && log_status:\"200\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "4xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" && !\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && log_status:\"400\"",
+              "refId": "B",
+              "timeField": "timestamp"
+            },
+            {
+              "alias": "5xx",
+              "bucketAggs": [
+                {
+                  "id": "2",
+                  "settings": {
+                    "interval": "20m"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "hide": false,
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" && !\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && log_status:\"500\"",
+              "refId": "C",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Transaction GET Metrics",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 28
+          },
+          "hiddenSeries": false,
+          "id": 76,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "filebeat_@timestamp",
+                  "id": "2",
+                  "settings": {
+                    "interval": "1h"
+                  },
+                  "type": "date_histogram"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" && !\"sgmcrpo\" &&!\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Transactions GET API Max Duration (Non Prepaid)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 8,
+            "x": 0,
+            "y": 40
+          },
+          "id": 33,
+          "options": {
+            "showHeader": true
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_term",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Transaction Get Statuses",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 7,
+            "x": 8,
+            "y": 40
+          },
+          "id": 61,
+          "options": {
+            "showHeader": true,
+            "sortBy": [
+              {
+                "desc": true,
+                "displayName": "Count"
+              }
+            ]
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "Status",
+              "bucketAggs": [
+                {
+                  "field": "log_status",
+                  "id": "2",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "0"
+                  },
+                  "type": "terms"
+                },
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "_count",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "id": "1",
+                  "type": "count"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" &&  !\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\" && log_status:(\"500\",\"501\",\"502\",\"503\")",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Transactions API Failure Breakdown",
+          "type": "table"
+        },
+        {
+          "datasource": "GrayLog-Elasticsearch",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "log_request_path"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 436
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 13,
+            "w": 9,
+            "x": 15,
+            "y": 40
+          },
+          "id": 64,
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.4.0",
+          "targets": [
+            {
+              "alias": "",
+              "bucketAggs": [
+                {
+                  "field": "log_request_path",
+                  "id": "3",
+                  "settings": {
+                    "min_doc_count": "1",
+                    "order": "desc",
+                    "orderBy": "1",
+                    "size": "10"
+                  },
+                  "type": "terms"
+                }
+              ],
+              "metrics": [
+                {
+                  "field": "log_Request_Time",
+                  "id": "1",
+                  "settings": {},
+                  "type": "max"
+                }
+              ],
+              "query": "filebeat_fields_app:op AND \"GET\" && \"users\" && !\"cards\" && \"wallets\" && !\"funds\" && \"transactions\" && !\"authentications\" && !\"addresses\" && !\"overseas\"",
+              "refId": "A",
+              "timeField": "timestamp"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Transactions Slowest 10 APIs",
+          "type": "table"
+        }
+      ],
+      "title": "Transactions Metrics",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 16,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "CloudWatch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 0,
+            "y": 7
+          },
+          "hiddenSeries": false,
+          "id": 56,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "IST DB Connections",
+              "color": "#5794F2"
+            },
+            {
+              "alias": "SGT DB Connections",
+              "color": "#B877D9"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "IST DB Connections",
+              "dimensions": {
+                "DBInstanceIdentifier": "mm-in-sgt-prd-57"
+              },
+              "expression": "",
+              "id": "",
+              "matchExact": true,
+              "metricName": "DatabaseConnections",
+              "namespace": "AWS/RDS",
+              "period": "",
+              "refId": "A",
+              "region": "ap-south-1",
+              "statistics": [
+                "Maximum"
+              ]
+            },
+            {
+              "alias": "SGT DB Connections",
+              "dimensions": {
+                "DBInstanceIdentifier": "mm-in-ist-db-prd-57"
+              },
+              "expression": "",
+              "hide": false,
+              "id": "",
+              "matchExact": true,
+              "metricName": "DatabaseConnections",
+              "namespace": "AWS/RDS",
+              "period": "",
+              "refId": "B",
+              "region": "ap-south-1",
+              "statistics": [
+                "Maximum"
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "DB Connections",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "CloudWatch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 12,
+            "y": 7
+          },
+          "hiddenSeries": false,
+          "id": 4,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "IST DB utilization",
+              "color": "#5794F2"
+            },
+            {
+              "alias": "SGT DB utilization",
+              "color": "#B877D9"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "IST DB utilization",
+              "dimensions": {
+                "DBInstanceIdentifier": "mm-in-ist-db-prd-57"
+              },
+              "expression": "",
+              "id": "",
+              "matchExact": true,
+              "metricName": "CPUUtilization",
+              "namespace": "AWS/RDS",
+              "period": "",
+              "refId": "A",
+              "region": "ap-south-1",
+              "statistics": [
+                "Average"
+              ]
+            },
+            {
+              "alias": "SGT DB utilization",
+              "dimensions": {
+                "DBInstanceIdentifier": "mm-in-sgt-prd-57"
+              },
+              "expression": "",
+              "hide": false,
+              "id": "",
+              "matchExact": true,
+              "metricName": "CPUUtilization",
+              "namespace": "AWS/RDS",
+              "period": "",
+              "refId": "B",
+              "region": "ap-south-1",
+              "statistics": [
+                "Average"
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "DB CPU usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "CloudWatch",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 2,
+          "fillGradient": 8,
+          "gridPos": {
+            "h": 13,
+            "w": 24,
+            "x": 0,
+            "y": 17
+          },
+          "hiddenSeries": false,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "null as zero",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.0",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "API Servers",
+              "dimensions": {
+                "AutoScalingGroupName": "optimusprime-prod-v035"
+              },
+              "expression": "",
+              "id": "",
+              "matchExact": true,
+              "metricName": "CPUUtilization",
+              "namespace": "AWS/EC2",
+              "period": "",
+              "refId": "A",
+              "region": "ap-south-1",
+              "statistics": [
+                "Maximum"
+              ]
+            },
+            {
+              "alias": "Cron Server",
+              "dimensions": {
+                "AutoScalingGroupName": "optimusprime-prod-cron-v038"
+              },
+              "expression": "",
+              "hide": false,
+              "id": "",
+              "matchExact": true,
+              "metricName": "CPUUtilization",
+              "namespace": "AWS/EC2",
+              "period": "",
+              "refId": "B",
+              "region": "ap-south-1",
+              "statistics": [
+                "Maximum"
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Servers' CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Infra Metrics",
+      "type": "row"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": "*",
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Program Code",
+        "multi": true,
+        "name": "program_code",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "flexmpo",
+            "value": "flexmpo"
+          },
+          {
+            "selected": false,
+            "text": "flexmpr",
+            "value": "flexmpr"
+          },
+          {
+            "selected": false,
+            "text": "flexmw",
+            "value": "flexmw"
+          },
+          {
+            "selected": false,
+            "text": "idbri",
+            "value": "idbri"
+          },
+          {
+            "selected": false,
+            "text": "idbritk",
+            "value": "idbritk"
+          },
+          {
+            "selected": false,
+            "text": "idbritn",
+            "value": "idbritn"
+          },
+          {
+            "selected": false,
+            "text": "idbriu",
+            "value": "idbriu"
+          },
+          {
+            "selected": false,
+            "text": "inabirla",
+            "value": "inabirla"
+          },
+          {
+            "selected": false,
+            "text": "inabwind",
+            "value": "inabwind"
+          },
+          {
+            "selected": false,
+            "text": "inakshs",
+            "value": "inakshs"
+          },
+          {
+            "selected": false,
+            "text": "inbankit",
+            "value": "inbankit"
+          },
+          {
+            "selected": false,
+            "text": "inbonf",
+            "value": "inbonf"
+          },
+          {
+            "selected": false,
+            "text": "incmpdgp",
+            "value": "incmpdgp"
+          },
+          {
+            "selected": false,
+            "text": "indbrgpr",
+            "value": "indbrgpr"
+          },
+          {
+            "selected": false,
+            "text": "indemo",
+            "value": "indemo"
+          },
+          {
+            "selected": false,
+            "text": "indycsmc",
+            "value": "indycsmc"
+          },
+          {
+            "selected": false,
+            "text": "infdvis",
+            "value": "infdvis"
+          },
+          {
+            "selected": false,
+            "text": "infdvisp",
+            "value": "infdvisp"
+          },
+          {
+            "selected": false,
+            "text": "infedru",
+            "value": "infedru"
+          },
+          {
+            "selected": false,
+            "text": "infedvs",
+            "value": "infedvs"
+          },
+          {
+            "selected": false,
+            "text": "infedvsp",
+            "value": "infedvsp"
+          },
+          {
+            "selected": false,
+            "text": "infino",
+            "value": "infino"
+          },
+          {
+            "selected": false,
+            "text": "infndhse",
+            "value": "infndhse"
+          },
+          {
+            "selected": false,
+            "text": "ingopygc",
+            "value": "ingopygc"
+          },
+          {
+            "selected": false,
+            "text": "ingopygp",
+            "value": "ingopygp"
+          },
+          {
+            "selected": false,
+            "text": "inhike",
+            "value": "inhike"
+          },
+          {
+            "selected": false,
+            "text": "ininlnds",
+            "value": "ininlnds"
+          },
+          {
+            "selected": false,
+            "text": "ininmars",
+            "value": "ininmars"
+          },
+          {
+            "selected": false,
+            "text": "ininmojo",
+            "value": "ininmojo"
+          },
+          {
+            "selected": false,
+            "text": "ininnof",
+            "value": "ininnof"
+          },
+          {
+            "selected": false,
+            "text": "inircrup",
+            "value": "inircrup"
+          },
+          {
+            "selected": false,
+            "text": "inirctc",
+            "value": "inirctc"
+          },
+          {
+            "selected": false,
+            "text": "inisic",
+            "value": "inisic"
+          },
+          {
+            "selected": false,
+            "text": "inisicic",
+            "value": "inisicic"
+          },
+          {
+            "selected": false,
+            "text": "inisicin",
+            "value": "inisicin"
+          },
+          {
+            "selected": false,
+            "text": "injaldiu",
+            "value": "injaldiu"
+          },
+          {
+            "selected": false,
+            "text": "injanabk",
+            "value": "injanabk"
+          },
+          {
+            "selected": false,
+            "text": "injcemyc",
+            "value": "injcemyc"
+          },
+          {
+            "selected": false,
+            "text": "inkitein",
+            "value": "inkitein"
+          },
+          {
+            "selected": false,
+            "text": "inkitejt",
+            "value": "inkitejt"
+          },
+          {
+            "selected": false,
+            "text": "inkiterp",
+            "value": "inkiterp"
+          },
+          {
+            "selected": false,
+            "text": "inktbinh",
+            "value": "inktbinh"
+          },
+          {
+            "selected": false,
+            "text": "inmjaldi",
+            "value": "inmjaldi"
+          },
+          {
+            "selected": false,
+            "text": "inmlite",
+            "value": "inmlite"
+          },
+          {
+            "selected": false,
+            "text": "inmmcorp",
+            "value": "inmmcorp"
+          },
+          {
+            "selected": false,
+            "text": "inmmdemo",
+            "value": "inmmdemo"
+          },
+          {
+            "selected": false,
+            "text": "inmmfis",
+            "value": "inmmfis"
+          },
+          {
+            "selected": false,
+            "text": "inmmfsns",
+            "value": "inmmfsns"
+          },
+          {
+            "selected": false,
+            "text": "inmmgpr",
+            "value": "inmmgpr"
+          },
+          {
+            "selected": false,
+            "text": "inmmihsh",
+            "value": "inmmihsh"
+          },
+          {
+            "selected": false,
+            "text": "inmmlite",
+            "value": "inmmlite"
+          },
+          {
+            "selected": false,
+            "text": "inmmlyt",
+            "value": "inmmlyt"
+          },
+          {
+            "selected": false,
+            "text": "inmmteam",
+            "value": "inmmteam"
+          },
+          {
+            "selected": false,
+            "text": "inmmutil",
+            "value": "inmmutil"
+          },
+          {
+            "selected": false,
+            "text": "inmols",
+            "value": "inmols"
+          },
+          {
+            "selected": false,
+            "text": "inmsewa",
+            "value": "inmsewa"
+          },
+          {
+            "selected": false,
+            "text": "inmss",
+            "value": "inmss"
+          },
+          {
+            "selected": false,
+            "text": "inpaylls",
+            "value": "inpaylls"
+          },
+          {
+            "selected": false,
+            "text": "inpfivbn",
+            "value": "inpfivbn"
+          },
+          {
+            "selected": false,
+            "text": "inqwikci",
+            "value": "inqwikci"
+          },
+          {
+            "selected": false,
+            "text": "inqwikcl",
+            "value": "inqwikcl"
+          },
+          {
+            "selected": false,
+            "text": "inqwkclr",
+            "value": "inqwkclr"
+          },
+          {
+            "selected": false,
+            "text": "inqwkind",
+            "value": "inqwkind"
+          },
+          {
+            "selected": false,
+            "text": "inrupay",
+            "value": "inrupay"
+          },
+          {
+            "selected": false,
+            "text": "inrupycs",
+            "value": "inrupycs"
+          },
+          {
+            "selected": false,
+            "text": "inrvndem",
+            "value": "inrvndem"
+          },
+          {
+            "selected": false,
+            "text": "insfxpgc",
+            "value": "insfxpgc"
+          },
+          {
+            "selected": false,
+            "text": "insfxpgp",
+            "value": "insfxpgp"
+          },
+          {
+            "selected": false,
+            "text": "insndl",
+            "value": "insndl"
+          },
+          {
+            "selected": false,
+            "text": "inspicej",
+            "value": "inspicej"
+          },
+          {
+            "selected": false,
+            "text": "inspijet",
+            "value": "inspijet"
+          },
+          {
+            "selected": false,
+            "text": "instash",
+            "value": "instash"
+          },
+          {
+            "selected": false,
+            "text": "intmwf",
+            "value": "intmwf"
+          },
+          {
+            "selected": false,
+            "text": "intmwgc",
+            "value": "intmwgc"
+          },
+          {
+            "selected": false,
+            "text": "intrains",
+            "value": "intrains"
+          },
+          {
+            "selected": false,
+            "text": "inyes",
+            "value": "inyes"
+          },
+          {
+            "selected": false,
+            "text": "inzenpay",
+            "value": "inzenpay"
+          },
+          {
+            "selected": false,
+            "text": "inzogpmm",
+            "value": "inzogpmm"
+          },
+          {
+            "selected": false,
+            "text": "inzokudo",
+            "value": "inzokudo"
+          },
+          {
+            "selected": false,
+            "text": "inzokugc",
+            "value": "inzokugc"
+          },
+          {
+            "selected": false,
+            "text": "metricbeat",
+            "value": "metricbeat"
+          },
+          {
+            "selected": false,
+            "text": "phaub",
+            "value": "phaub"
+          },
+          {
+            "selected": false,
+            "text": "phaubdem",
+            "value": "phaubdem"
+          },
+          {
+            "selected": false,
+            "text": "phaubhlm",
+            "value": "phaubhlm"
+          },
+          {
+            "selected": false,
+            "text": "phaubpgb",
+            "value": "phaubpgb"
+          },
+          {
+            "selected": false,
+            "text": "phdemo",
+            "value": "phdemo"
+          },
+          {
+            "selected": false,
+            "text": "phkwikk",
+            "value": "phkwikk"
+          },
+          {
+            "selected": false,
+            "text": "phphhc",
+            "value": "phphhc"
+          },
+          {
+            "selected": false,
+            "text": "phtestph",
+            "value": "phtestph"
+          },
+          {
+            "selected": false,
+            "text": "phxpnsio",
+            "value": "phxpnsio"
+          },
+          {
+            "selected": false,
+            "text": "phzybi",
+            "value": "phzybi"
+          },
+          {
+            "selected": false,
+            "text": "sfxpgp",
+            "value": "sfxpgp"
+          },
+          {
+            "selected": false,
+            "text": "sgadvrem",
+            "value": "sgadvrem"
+          },
+          {
+            "selected": false,
+            "text": "sgasiatp",
+            "value": "sgasiatp"
+          },
+          {
+            "selected": false,
+            "text": "sgatlscn",
+            "value": "sgatlscn"
+          },
+          {
+            "selected": false,
+            "text": "sgatlscr",
+            "value": "sgatlscr"
+          },
+          {
+            "selected": false,
+            "text": "sgcircle",
+            "value": "sgcircle"
+          },
+          {
+            "selected": false,
+            "text": "sgfeige",
+            "value": "sgfeige"
+          },
+          {
+            "selected": false,
+            "text": "sgfinxsd",
+            "value": "sgfinxsd"
+          },
+          {
+            "selected": false,
+            "text": "sgflxpay",
+            "value": "sgflxpay"
+          },
+          {
+            "selected": false,
+            "text": "sgfxpay",
+            "value": "sgfxpay"
+          },
+          {
+            "selected": false,
+            "text": "sggtd",
+            "value": "sggtd"
+          },
+          {
+            "selected": false,
+            "text": "sghearti",
+            "value": "sghearti"
+          },
+          {
+            "selected": false,
+            "text": "sginsta",
+            "value": "sginsta"
+          },
+          {
+            "selected": false,
+            "text": "sgjstlgn",
+            "value": "sgjstlgn"
+          },
+          {
+            "selected": false,
+            "text": "sgkleacd",
+            "value": "sgkleacd"
+          },
+          {
+            "selected": false,
+            "text": "sgmc",
+            "value": "sgmc"
+          },
+          {
+            "selected": false,
+            "text": "sgmcpo",
+            "value": "sgmcpo"
+          },
+          {
+            "selected": false,
+            "text": "sgmcpr",
+            "value": "sgmcpr"
+          },
+          {
+            "selected": false,
+            "text": "sgmcrpo",
+            "value": "sgmcrpo"
+          },
+          {
+            "selected": false,
+            "text": "sgmmdemo",
+            "value": "sgmmdemo"
+          },
+          {
+            "selected": false,
+            "text": "sgmmdlyt",
+            "value": "sgmmdlyt"
+          },
+          {
+            "selected": false,
+            "text": "sgmmlit",
+            "value": "sgmmlit"
+          },
+          {
+            "selected": false,
+            "text": "sgmmlitu",
+            "value": "sgmmlitu"
+          },
+          {
+            "selected": false,
+            "text": "sgmmltgc",
+            "value": "sgmmltgc"
+          },
+          {
+            "selected": false,
+            "text": "sgmmremt",
+            "value": "sgmmremt"
+          },
+          {
+            "selected": false,
+            "text": "sgmmrmwl",
+            "value": "sgmmrmwl"
+          },
+          {
+            "selected": false,
+            "text": "sgmmusd",
+            "value": "sgmmusd"
+          },
+          {
+            "selected": false,
+            "text": "sgmmusdu",
+            "value": "sgmmusdu"
+          },
+          {
+            "selected": false,
+            "text": "sgmobilx",
+            "value": "sgmobilx"
+          },
+          {
+            "selected": false,
+            "text": "sgngt",
+            "value": "sgngt"
+          },
+          {
+            "selected": false,
+            "text": "sgnitpgp",
+            "value": "sgnitpgp"
+          },
+          {
+            "selected": false,
+            "text": "sgoctifi",
+            "value": "sgoctifi"
+          },
+          {
+            "selected": false,
+            "text": "sgquancy",
+            "value": "sgquancy"
+          },
+          {
+            "selected": false,
+            "text": "sgrvntst",
+            "value": "sgrvntst"
+          },
+          {
+            "selected": false,
+            "text": "sgsaltcn",
+            "value": "sgsaltcn"
+          },
+          {
+            "selected": false,
+            "text": "sgsandbx",
+            "value": "sgsandbx"
+          },
+          {
+            "selected": false,
+            "text": "sgsflgp",
+            "value": "sgsflgp"
+          },
+          {
+            "selected": false,
+            "text": "sgsflgpu",
+            "value": "sgsflgpu"
+          },
+          {
+            "selected": false,
+            "text": "sgsgtemp",
+            "value": "sgsgtemp"
+          },
+          {
+            "selected": false,
+            "text": "sgsgzipp",
+            "value": "sgsgzipp"
+          },
+          {
+            "selected": false,
+            "text": "sgsklsgd",
+            "value": "sgsklsgd"
+          },
+          {
+            "selected": false,
+            "text": "sgskysgd",
+            "value": "sgskysgd"
+          },
+          {
+            "selected": false,
+            "text": "sgskyusd",
+            "value": "sgskyusd"
+          },
+          {
+            "selected": false,
+            "text": "sgsleek",
+            "value": "sgsleek"
+          },
+          {
+            "selected": false,
+            "text": "sgspenmo",
+            "value": "sgspenmo"
+          },
+          {
+            "selected": false,
+            "text": "sgspenmu",
+            "value": "sgspenmu"
+          },
+          {
+            "selected": false,
+            "text": "sgsspsin",
+            "value": "sgsspsin"
+          },
+          {
+            "selected": false,
+            "text": "sgstlupy",
+            "value": "sgstlupy"
+          },
+          {
+            "selected": false,
+            "text": "sgstylop",
+            "value": "sgstylop"
+          },
+          {
+            "selected": false,
+            "text": "sgvolopy",
+            "value": "sgvolopy"
+          },
+          {
+            "selected": false,
+            "text": "sgvyvo",
+            "value": "sgvyvo"
+          },
+          {
+            "selected": false,
+            "text": "sgvyvocs",
+            "value": "sgvyvocs"
+          },
+          {
+            "selected": false,
+            "text": "sgxpensi",
+            "value": "sgxpensi"
+          },
+          {
+            "selected": false,
+            "text": "sgzimble",
+            "value": "sgzimble"
+          },
+          {
+            "selected": false,
+            "text": "thdemo",
+            "value": "thdemo"
+          },
+          {
+            "selected": false,
+            "text": "vndemo",
+            "value": "vndemo"
+          },
+          {
+            "selected": false,
+            "text": "vnhd",
+            "value": "vnhd"
+          },
+          {
+            "selected": false,
+            "text": "vnmmdemo",
+            "value": "vnmmdemo"
+          },
+          {
+            "selected": false,
+            "text": "vnvtcpay",
+            "value": "vnvtcpay"
+          }
+        ],
+        "query": "flexmpo,flexmpr,flexmw,idbri,idbritk,idbritn,idbriu,inabirla,inabwind,inakshs,inbankit,inbonf,incmpdgp,indbrgpr,indemo,indycsmc,infdvis,infdvisp,infedru,infedvs,infedvsp,infino,infndhse,ingopygc,ingopygp,inhike,ininlnds,ininmars,ininmojo,ininnof,inircrup,inirctc,inisic,inisicic,inisicin,injaldiu,injanabk,injcemyc,inkitein,inkitejt,inkiterp,inktbinh,inmjaldi,inmlite,inmmcorp,inmmdemo,inmmfis,inmmfsns,inmmgpr,inmmihsh,inmmlite,inmmlyt,inmmteam,inmmutil,inmols,inmsewa,inmss,inpaylls,inpfivbn,inqwikci,inqwikcl,inqwkclr,inqwkind,inrupay,inrupycs,inrvndem,insfxpgc,insfxpgp,insndl,inspicej,inspijet,instash,intmwf,intmwgc,intrains,inyes,inzenpay,inzogpmm,inzokudo,inzokugc,metricbeat,phaub,phaubdem,phaubhlm,phaubpgb,phdemo,phkwikk,phphhc,phtestph,phxpnsio,phzybi,sfxpgp,sgadvrem,sgasiatp,sgatlscn,sgatlscr,sgcircle,sgfeige,sgfinxsd,sgflxpay,sgfxpay,sggtd,sghearti,sginsta,sgjstlgn,sgkleacd,sgmc,sgmcpo,sgmcpr,sgmcrpo,sgmmdemo,sgmmdlyt,sgmmlit,sgmmlitu,sgmmltgc,sgmmremt,sgmmrmwl,sgmmusd,sgmmusdu,sgmobilx,sgngt,sgnitpgp,sgoctifi,sgquancy,sgrvntst,sgsaltcn,sgsandbx,sgsflgp,sgsflgpu,sgsgtemp,sgsgzipp,sgsklsgd,sgskysgd,sgskyusd,sgsleek,sgspenmo,sgspenmu,sgsspsin,sgstlupy,sgstylop,sgvolopy,sgvyvo,sgvyvocs,sgxpensi,sgzimble,thdemo,vndemo,vnhd,vnmmdemo,vnvtcpay",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "OP APIs Metrics",
+  "uid": "Cmyw759Mz",
+  "version": 50
+}
